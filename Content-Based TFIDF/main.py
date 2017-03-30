@@ -94,9 +94,16 @@ def GetTopTenForUser(user_id):
 
 recomm_movies = GetTopTenForUser(320)
 #print(recomm_movies)
-recomm_movie_ids = recomm_movies[1:]
+recomm_movie_ids = recomm_movies.keys().tolist()
+recomm_movie_similarty = recomm_movies.as_matrix()
+
+recommendation_df_unweighted = pd.DataFrame(
+    {'movie_id': recomm_movie_ids,
+     'similarities': recomm_movie_similarty
+    })
+
 print("Recommeded Movies unweighted")
-print(recomm_movie_ids)
+print(recommendation_df_unweighted)
 
 #Part 2: Weighted User Profile
 
@@ -116,9 +123,14 @@ def GetTopTenForUser_Weighted(user_id):
 
 recomm_weighted = GetTopTenForUser_Weighted(320)
 
-
+recomm_movie_ids_weighted = recomm_weighted.keys().tolist()
+recomm_movie_similarty_weighted = recomm_weighted.as_matrix()
+recommendation_df_weighted = pd.DataFrame(
+    {'movie_id': recomm_movie_ids_weighted,
+     'similarities': recomm_movie_similarty_weighted
+    })
 print("Recommeded Movies weighted")
-print(recomm_weighted)
+print(recommendation_df_weighted)
 
 
 
